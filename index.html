@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pwani Car Rentals</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f5f5;--card:#fff;--tx:#0d2b33;--mu:#5b7279;--bd:#d9e4e4;--ac:#0d4d5c;--on:#fff;--sun:#f2b705;--bad:#b42318;--sea:#cfe6ec;--land:#e9e2cf;--ok:#0b5b34;--okb:#d6f3e3;--wb:#fde7c0;--wt:#7a4a00;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b181d;--card:#13262d;--tx:#e6f1f2;--mu:#8fa8ae;--bd:#25404a;--ac:#5cc3d6;--on:#06222a;--sea:#12323d;--land:#2a2a22;--ok:#7be0a8;--okb:#12382a;--wb:#3d2f0d;--wt:#f5c96a}}
+:root[data-theme="dark"]{--bg:#0b181d;--card:#13262d;--tx:#e6f1f2;--mu:#8fa8ae;--bd:#25404a;--ac:#5cc3d6;--on:#06222a;--sea:#12323d;--land:#2a2a22;--ok:#7be0a8;--okb:#12382a;--wb:#3d2f0d;--wt:#f5c96a}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 "Bricolage Grotesque",system-ui,sans-serif}
+a{color:inherit}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 24px;background:var(--card);border-bottom:1px solid var(--bd)}
+.logo{font-weight:800;font-size:1.2rem;text-decoration:none;letter-spacing:-.01em}.logo i{font-style:normal;color:var(--sun)}
+nav{display:flex;gap:4px;flex-wrap:wrap}nav a{padding:7px 14px;border-radius:8px;text-decoration:none;font-weight:600;color:var(--mu)}nav a.on{background:var(--ac);color:var(--on)}
+.btn{font:inherit;border:1px solid var(--ac);background:transparent;color:var(--ac);padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:600}
+.btn.pri{background:var(--ac);color:var(--on)}.btn.sm{padding:4px 10px;font-size:.85rem}.btn:disabled{opacity:.45;cursor:not-allowed}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:20px 24px}
+.hero{background:linear-gradient(135deg,#0d4d5c,#0a2f3a);color:#fff;padding:48px 24px 56px}
+.hero .in{max-width:1120px;margin:0 auto}.hero h1{font-size:clamp(2rem,5.5vw,3.6rem);line-height:1.02;margin:0 0 10px;font-weight:800;letter-spacing:-.025em;max-width:16ch}
+.hero p{margin:0 0 24px;color:#bfdde4;max-width:48ch}
+.search{display:flex;flex-wrap:wrap;gap:10px;background:var(--card);color:var(--tx);padding:14px;border-radius:12px;max-width:760px}
+.search label{flex:1 1 150px;margin:0}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--mu);margin-top:10px}.search label{margin-top:0}
+input,select{width:100%;font:inherit;padding:9px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);margin-top:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px}
+h2.sec{font-size:1.5rem;margin:28px 0 14px;font-weight:800;letter-spacing:-.01em}
+.car{background:var(--card);border:1px solid var(--bd);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.pic{height:120px;display:flex;align-items:center;justify-content:center;color:#fff}.pic svg{width:62%;opacity:.9}
+.car .b{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}.car h3{margin:0;font-size:1.1rem}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{font-size:.78rem;background:var(--bg);border:1px solid var(--bd);border-radius:99px;padding:1px 9px;color:var(--mu)}
+.price{font-size:1.25rem;font-weight:800}.note{color:var(--mu);font-size:.85rem}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.78rem;font-weight:600;background:var(--okb);color:var(--ok)}.tag.w{background:var(--wb);color:var(--wt)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.step{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px}.step b{display:block;color:var(--ac);font-size:1.3rem}
+footer{margin-top:40px;padding:24px;border-top:1px solid var(--bd);color:var(--mu);font-size:.9rem;text-align:center}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:30}
+.modal.open{display:flex}.sheet{background:var(--card);border-radius:14px;max-width:440px;width:100%;padding:22px;max-height:90vh;overflow:auto}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.total{display:flex;justify-content:space-between;margin:16px 0;font-weight:800;font-size:1.1rem}.err{color:var(--bad);font-size:.9rem;min-height:1.3em}
+.shell{display:grid;grid-template-columns:200px 1fr;gap:20px;max-width:1240px;margin:0 auto;padding:20px 24px}
+.side{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px;align-self:start;display:flex;flex-direction:column;gap:2px}
+.side .who{padding:8px 10px;font-weight:800}.side .who span{display:block;font-weight:400;color:var(--mu);font-size:.82rem}
+.side button{font:inherit;text-align:left;border:0;background:transparent;color:var(--tx);padding:9px 10px;border-radius:8px;cursor:pointer;font-weight:600}
+.side button.on{background:var(--ac);color:var(--on)}
+@media(max-width:760px){.shell{grid-template-columns:1fr;padding:14px}.side{flex-direction:row;flex-wrap:wrap}.side .who{width:100%}.wrap{padding:16px}.top{padding:10px 14px}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;color:var(--mu);font-size:.9rem}.stat b{display:block;font-size:1.6rem;color:var(--tx)}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:16px}.panel h3{margin:0 0 10px}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:620px;font-size:.9rem}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--bd);vertical-align:top}th{color:var(--mu);font-weight:600}
+svg.map{width:100%;height:auto;border-radius:10px;display:block}.pin{cursor:pointer}
+.info{margin-top:10px;padding:10px 12px;border-left:4px solid var(--sun);background:var(--bg);border-radius:6px;min-height:3.2em}
+.login{max-width:380px;margin:50px auto;padding:0 16px}
+.spin{width:40px;height:40px;border:5px solid var(--bd);border-top-color:var(--ac);border-radius:50%;animation:s 1s linear infinite;margin:16px auto}
+@keyframes s{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.spin{animation:none}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><symbol id="car" viewBox="0 0 120 50"><path d="M6 38v-9q0-4 5-5l13-3 11-9h38q6 0 10 5l9 8 15 4q4 1 4 5v4z" fill="currentColor"/><circle cx="32" cy="38" r="8" fill="#10262c" stroke="#fff" stroke-width="2"/><circle cx="92" cy="38" r="8" fill="#10262c" stroke="#fff" stroke-width="2"/></symbol></svg>
+<div class="top"><a class="logo" href="#cars">Pwani<i>.</i>Rentals</a>
+<nav><a href="#cars">Browse cars</a><a href="#owner">Owner portal</a><a href="#admin">Admin</a></nav></div>
+<div id="app"></div>
+<div class="modal" id="m"><div class="sheet" id="sheet"></div></div>
+
+<script>
+var YARD={x:352,y:150},COMM=0.15;
+var PLACES=[{n:"Nyali",x:352,y:150},{n:"Mombasa Island",x:300,y:260},{n:"Bamburi",x:440,y:90},{n:"Likoni",x:300,y:340},{n:"Moi Airport",x:130,y:200},{n:"Diani road",x:200,y:380}];
+var COL=["#0d4d5c","#7a3b1d","#3b4a6b","#5a2d5e","#2f5d3a","#8a5a00","#444"];
+var owners=[{id:"o1",name:"Mwanaisha Traders"},{id:"o2",name:"Kilifi Motors"}];
+var cars=[
+{id:1,name:"Toyota Vitz",type:"Economy",seats:5,price:3500,gps:"TRK-1021",owner:"o1",status:"live",plate:"KDG 214A"},
+{id:2,name:"Toyota Axio",type:"Sedan",seats:5,price:4500,gps:"TRK-1022",owner:"o1",status:"live",plate:"KDH 880C"},
+{id:3,name:"Mazda CX-5",type:"SUV",seats:5,price:8000,gps:"TRK-1023",owner:"o1",status:"live",plate:"KDJ 305F"},
+{id:4,name:"Toyota Prado",type:"4x4 SUV",seats:7,price:15000,gps:"TRK-1024",owner:"o2",status:"live",plate:"KDK 112B"},
+{id:5,name:"Toyota Noah",type:"Van",seats:8,price:7000,gps:"TRK-1025",owner:"o2",status:"live",plate:"KDL 640D"},
+{id:6,name:"Nissan Note",type:"Economy",seats:5,price:3800,gps:"TRK-1026",owner:"o2",status:"live",plate:"KDM 771E"}];
+var bookings=[
+{ref:"PW-1001",car:1,name:"Brian Mwangi",phone:"254700111222",from:"2026-11-10",to:"2026-11-12",total:7000,open:false},
+{ref:"PW-1002",car:3,name:"Amina Hassan",phone:"254712345678",from:"2026-11-16",to:"2026-11-19",total:24000,open:true},
+{ref:"PW-1003",car:5,name:"Peter Otieno",phone:"254722998877",from:"2026-11-16",to:"2026-11-21",total:35000,open:true}];
+var pos={},tgt={},picked=null,authA=false,authO=null;
+var tab={admin:"ov",owner:"cars"};
+var T=new Date("2026-11-16T09:00:00");
+function iso(d){return d.toISOString().slice(0,10)}function add(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x}
+var F={type:"All",from:iso(T),to:iso(add(T,1))};
+try{var sv=JSON.parse(localStorage.getItem("pcr2"));if(sv&&sv.cars){cars=sv.cars;bookings=sv.bookings}}catch(e){}
+function save(){try{localStorage.setItem("pcr2",JSON.stringify({cars:cars,bookings:bookings}))}catch(e){}}
+function yardPos(id){return{x:YARD.x+(id*7%30)-15,y:YARD.y+(id*11%24)-12}}
+cars.forEach(function(c){pos[c.id]=yardPos(c.id)});pos[3]={x:300,y:260};pos[5]={x:440,y:90};
+function $(i){return document.getElementById(i)}function fmt(n){return "KES "+n.toLocaleString("en-KE")}
+function car(id){return cars.filter(function(c){return c.id===id})[0]}
+function openB(id){return bookings.filter(function(b){return b.car===id&&b.open})[0]}
+function free(c,f,t){return !bookings.some(function(b){return b.car===c.id&&b.open&&b.from<t&&f<b.to})}
+function days(f,t){var d=Math.round((new Date(t)-new Date(f))/864e5);return d<1?1:d}
+function oname(id){return owners.filter(function(o){return o.id===id})[0].name}
+
+function render(){
+ var r=(location.hash||"#cars").slice(1);if(["cars","admin","owner"].indexOf(r)<0)r="cars";
+ Array.prototype.forEach.call(document.querySelectorAll("nav a"),function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+r)});
+ if(r==="cars")home();else if(r==="admin")adminV();else ownerV();
+}
+window.onhashchange=render;
+
+/* ---------- customer site ---------- */
+function home(){
+ var types=["All"].concat(cars.reduce(function(a,c){if(a.indexOf(c.type)<0)a.push(c.type);return a},[]));
+ $("app").innerHTML='<div class="hero"><div class="in"><h1>Rent a car in Mombasa.</h1><p>Clean, well-maintained vehicles from trusted local owners. Pick your dates, reserve online and collect at our Nyali yard.</p>'+
+ '<div class="search"><label>Pickup<input type="date" id="f1" value="'+F.from+'" min="'+iso(T)+'"></label><label>Return<input type="date" id="f2" value="'+F.to+'" min="'+iso(T)+'"></label>'+
+ '<label>Car type<select id="f3">'+types.map(function(t){return '<option'+(t===F.type?' selected':'')+'>'+t+'</option>'}).join("")+'</select></label></div></div></div>'+
+ '<div class="wrap"><h2 class="sec" id="cnt"></h2><div class="grid" id="grid"></div>'+
+ '<h2 class="sec">How it works</h2><div class="steps"><div class="step"><b>1</b>Choose your car and dates.</div><div class="step"><b>2</b>Enter your details and approve the payment request sent to your phone.</div><div class="step"><b>3</b>Collect your keys at the Nyali yard and drive.</div></div></div>'+
+ '<footer>Pwani Rentals · Nyali, Mombasa · Every vehicle is inspected and insured.</footer>';
+ $("f1").onchange=$("f2").onchange=$("f3").onchange=function(){F.from=$("f1").value;F.to=$("f2").value;F.type=$("f3").value;grid()};
+ grid();
+}
+function grid(){
+ var list=cars.filter(function(c){return c.status==="live"&&(F.type==="All"||c.type===F.type)});
+ $("cnt").textContent=list.length+(list.length===1?" car":" cars")+" for "+days(F.from,F.to)+(days(F.from,F.to)>1?" days":" day");
+ $("grid").innerHTML=list.map(function(c){var ok=free(c,F.from,F.to);
+  return '<div class="car"><div class="pic" style="background:linear-gradient(135deg,'+COL[c.id%7]+',#0a2f3a)"><svg viewBox="0 0 120 50"><use href="#car"/></svg></div><div class="b"><h3>'+c.name+'</h3>'+
+  '<div class="chips"><span class="chip">'+c.type+'</span><span class="chip">'+c.seats+' seats</span><span class="chip">Automatic</span></div>'+
+  '<div class="price">'+fmt(c.price)+' <span class="note">per day</span></div><div><span class="tag'+(ok?'':' w')+'">'+(ok?'Available':'Not available for these dates')+'</span></div>'+
+  '<button class="btn pri" style="margin-top:auto" data-id="'+c.id+'"'+(ok?'':' disabled')+'>Reserve</button></div></div>'}).join("")||'<p class="note">No cars of this type yet.</p>';
+ Array.prototype.forEach.call($("grid").querySelectorAll("button[data-id]"),function(b){b.onclick=function(){openBook(+b.dataset.id)}});
+}
+function openBook(id){
+ var c=car(id);
+ $("sheet").innerHTML='<h3 style="margin:0">Reserve '+c.name+'</h3><div class="note">'+fmt(c.price)+' per day</div>'+
+ '<label>Full name<input id="fn" autocomplete="name"></label><label>Phone number<input id="ph" inputmode="tel" placeholder="0712 345 678" autocomplete="tel"></label>'+'<div class="row"><label>National ID or passport no.<input id="idn" autocomplete="off"></label><label>Driving licence no.<input id="dl" autocomplete="off"></label></div><label style="display:flex;gap:8px;align-items:flex-start;font-weight:400"><input type="checkbox" id="ck" style="width:auto;margin-top:4px">I will show my original ID and driving licence at pickup. The booking is cancelled if they do not match these details.</label>'+
+ '<div class="row"><label>Pickup<input type="date" id="df" value="'+F.from+'" min="'+iso(T)+'"></label><label>Return<input type="date" id="dt" value="'+F.to+'" min="'+iso(T)+'"></label></div>'+
+ '<div class="total"><span id="dn"></span><span id="tt"></span></div><div class="err" id="er"></div>'+
+ '<button class="btn pri" id="pay" style="width:100%">Confirm booking</button><button class="btn" id="cx" style="width:100%;margin-top:8px">Cancel</button>';
+ $("m").classList.add("open");
+ function calc(){var d=days($("df").value,$("dt").value);$("dn").textContent=d+(d>1?" days":" day");$("tt").textContent=fmt(d*c.price)}
+ $("df").onchange=$("dt").onchange=calc;calc();
+ $("cx").onclick=function(){$("m").classList.remove("open")};
+ $("pay").onclick=function(){
+  var n=$("fn").value.trim(),p=$("ph").value.replace(/[\s-]/g,""),f=$("df").value,t=$("dt").value;
+  if(/^0[71]\d{8}$/.test(p))p="254"+p.slice(1);
+  if(!n){$("er").textContent="Enter your full name.";return}var idn=$("idn").value.trim(),dl=$("dl").value.trim();if(idn.length<6||dl.length<5){$("er").textContent="Enter your ID or passport number and your driving licence number.";return}if(!$("ck").checked){$("er").textContent="Please confirm you will show your original documents at pickup.";return}
+  if(!/^254[71]\d{8}$/.test(p)){$("er").textContent="Enter a valid phone number, e.g. 0712 345 678.";return}
+  if(!f||!t||t<=f){$("er").textContent="Return date must be after pickup date.";return}
+  if(!free(c,f,t)){$("er").textContent="This car is already booked for those dates.";return}
+  var total=days(f,t)*c.price;
+  $("sheet").innerHTML='<h3 style="margin:0">Approve the payment request</h3><div class="spin"></div><p style="text-align:center;margin:0">We sent a request for <b>'+fmt(total)+'</b> to <b>'+p+'</b>. Approve it on your phone to complete your booking.</p><p class="note" style="text-align:center">Demo: confirms automatically in a few seconds.</p>';
+  setTimeout(function(){
+   var ref="PW-"+(1000+bookings.length+1);
+   bookings.push({ref:ref,car:c.id,name:n,phone:p,idn:idn,dl:dl,from:f,to:t,total:total,open:true});save();pos[c.id]={x:YARD.x,y:YARD.y};tgt[c.id]=null;
+   $("sheet").innerHTML='<h3 style="margin:0">Booking confirmed</h3><p>'+c.name+' is reserved for <b>'+n+'</b> from '+f+' to '+t+'.</p><p>Reference: <b>'+ref+'</b><br>Paid: <b>'+fmt(total)+'</b></p><button class="btn pri" id="ok" style="width:100%">Done</button>';
+   $("ok").onclick=function(){$("m").classList.remove("open");render()};
+  },3500);
+ };
+}
+
+/* ---------- shared helpers ---------- */
+function side(who,sub,items,key){
+ return '<div class="side"><div class="who">'+who+'<span>'+sub+'</span></div>'+items.map(function(i){return '<button data-t="'+i[0]+'" class="'+(tab[key]===i[0]?'on':'')+'">'+i[1]+'</button>'}).join("")+'<button data-out="1">Sign out</button></div>';
+}
+function wire(key,fn){
+ Array.prototype.forEach.call(document.querySelectorAll(".side button"),function(b){b.onclick=function(){if(b.dataset.out){fn();return}tab[key]=b.dataset.t;render()}});
+}
+function loginBox(title,extra,okfn){
+ $("app").innerHTML='<div class="login"><div class="panel"><h3>'+title+'</h3>'+extra+'<label>Password<input type="password" id="pw" placeholder="Demo password"></label><div class="err" id="pe"></div><button class="btn pri" id="li" style="width:100%">Sign in</button></div></div>';
+ $("li").onclick=okfn;$("pw").onkeydown=function(e){if(e.key==="Enter")okfn()};
+}
+function statBox(a){return '<div class="stats">'+a.map(function(s){return '<div class="stat"><b>'+s[0]+'</b>'+s[1]+'</div>'}).join("")+'</div>'}
+
+/* ---------- admin ---------- */
+function adminV(){
+ if(!authA){loginBox("Staff sign in",'<p class="note">Demo password: admin</p>',function(){if($("pw").value==="admin"){authA=true;render()}else $("pe").textContent="Wrong password."});return}
+ var live=cars.filter(function(c){return c.status==="live"}),out=live.filter(function(c){return openB(c.id)}).length;
+ var pend=cars.filter(function(c){return c.status==="pending"}).length,rev=bookings.reduce(function(s,b){return s+b.total},0),t=tab.admin;
+ var h='<div class="shell">'+side("Admin","Fleet control",[["ov","Overview"],["bk","Bookings"],["vh","Vehicles"+(pend?" ("+pend+")":"")]],"admin")+'<div>';
+ if(t==="ov"){
+  h+=statBox([[live.length-out,"Available now"],[out,"Out with clients"],[fmt(rev),"Total bookings value"],[fmt(Math.round(rev*COMM)),"Commission ("+COMM*100+"%)"]]);
+  h+='<div class="panel"><h3>Live fleet map</h3><div id="mapw"></div><div class="info" id="info">Tap a car on the map to see who has it and until when.</div></div>';
+ }else if(t==="bk"){
+  h+='<div class="panel"><h3>All bookings</h3><div class="scroll"><table><tr><th>Ref</th><th>Car</th><th>Client</th><th>Phone</th><th>ID / licence</th><th>Dates</th><th>Amount</th><th>Status</th></tr>'+
+  bookings.slice().reverse().map(function(b){return '<tr><td>'+b.ref+'</td><td>'+car(b.car).name+'</td><td>'+b.name+'</td><td>'+b.phone+'</td><td>'+(b.idn||"-")+'<br><span class="note">DL '+(b.dl||"-")+'</span></td><td>'+b.from+' to '+b.to+'</td><td>'+fmt(b.total)+'</td><td><span class="tag'+(b.open?' w':'')+'">'+(b.open?'Active':'Returned')+'</span></td></tr>'}).join("")+'</table></div></div>';
+ }else{
+  h+='<div class="panel"><h3>Vehicles</h3><div class="scroll"><table><tr><th>Car</th><th>Owner</th><th>Tracker</th><th>Status</th><th>Client</th><th></th></tr>'+
+  cars.map(function(c){var b=openB(c.id);return '<tr><td><b>'+c.name+'</b><br><span class="note">'+c.plate+'</span></td><td>'+oname(c.owner)+'</td><td>'+c.gps+'</td>'+
+  '<td><span class="tag'+(c.status==="pending"||b?' w':'')+'">'+(c.status==="pending"?'Awaiting approval':b?'Booked':'Available')+'</span></td><td>'+(b?b.name+'<br><span class="note">until '+b.to+'</span>':'<span class="note">Nyali yard</span>')+'</td>'+
+  '<td>'+(c.status==="pending"?'<button class="btn sm pri" data-ap="'+c.id+'">Approve</button>':b?'<button class="btn sm" data-r="'+c.id+'">Mark returned</button>':'')+'</td></tr>'}).join("")+'</table></div></div>';
+ }
+ $("app").innerHTML=h+'</div></div>';
+ wire("admin",function(){authA=false;render()});
+ Array.prototype.forEach.call(document.querySelectorAll("[data-ap]"),function(b){b.onclick=function(){var c=car(+b.dataset.ap);c.status="live";c.gps="TRK-"+(1020+c.id);pos[c.id]=yardPos(c.id);save();render()}});
+ Array.prototype.forEach.call(document.querySelectorAll("[data-r]"),function(b){b.onclick=function(){var id=+b.dataset.r;openB(id).open=false;save();pos[id]=yardPos(id);render()}});
+ if(t==="ov")drawMap();
+}
+function drawMap(){
+ var w=$("mapw");if(!w)return;
+ var s='<svg class="map" viewBox="0 0 600 420" role="img" aria-label="Map of Mombasa with vehicle positions"><rect width="600" height="420" fill="var(--sea)"/><path d="M0 0H500Q470 60 420 120Q400 190 380 215Q350 240 330 300Q320 350 290 420H0Z" fill="var(--land)"/>';
+ PLACES.forEach(function(p){s+='<circle cx="'+p.x+'" cy="'+p.y+'" r="3" fill="var(--mu)"/><text x="'+(p.x+7)+'" y="'+(p.y+4)+'" font-size="11" fill="var(--mu)">'+p.n+'</text>'});
+ s+='<rect x="'+(YARD.x-22)+'" y="'+(YARD.y-18)+'" width="44" height="36" rx="5" fill="none" stroke="var(--ac)" stroke-dasharray="3 3"/>';
+ cars.forEach(function(c){if(c.status!=="live")return;var p=pos[c.id],b=openB(c.id);
+  s+='<g class="pin" data-c="'+c.id+'" tabindex="0"><circle cx="'+p.x+'" cy="'+p.y+'" r="'+(picked===c.id?10:7)+'" fill="'+(b?'#e07a00':'#00a651')+'" stroke="#fff" stroke-width="2"/><text x="'+(p.x+10)+'" y="'+(p.y-8)+'" font-size="10" font-weight="700" fill="var(--tx)">'+c.name.split(" ")[1]+'</text></g>'});
+ w.innerHTML=s+'</svg><div class="note" style="margin-top:6px">Green: parked. Orange: out with a client. Positions are simulated until a real GPS feed is connected.</div>';
+ Array.prototype.forEach.call(w.querySelectorAll("g.pin"),function(g){g.onclick=function(){picked=+g.dataset.c;drawMap()}});
+ if(picked){var c=car(picked),b=openB(picked),p=pos[picked],near="",d=1e9;PLACES.forEach(function(q){var e=Math.hypot(q.x-p.x,q.y-p.y);if(e<d){d=e;near=q.n}});
+  $("info").innerHTML=b?'<b>'+c.name+'</b> is booked by <b>'+b.name+'</b> ('+b.phone+'), '+b.from+' to '+b.to+'. Last seen near '+near+'.':'<b>'+c.name+'</b> is available and parked at the Nyali yard.'}
+}
+setInterval(function(){
+ if(!$("mapw"))return;
+ cars.forEach(function(c){if(!openB(c.id)||c.status!=="live")return;var p=pos[c.id];
+  if(!tgt[c.id]||Math.hypot(tgt[c.id].x-p.x,tgt[c.id].y-p.y)<4)tgt[c.id]=PLACES[Math.floor(Math.random()*PLACES.length)];
+  var t=tgt[c.id],d=Math.hypot(t.x-p.x,t.y-p.y)||1;p.x+=(t.x-p.x)/d*6;p.y+=(t.y-p.y)/d*6});
+ drawMap();
+},2000);
+
+/* ---------- owner portal ---------- */
+function ownerV(){
+ if(!authO){loginBox("Car owner sign in",'<label>Account<select id="ow">'+owners.map(function(o){return '<option value="'+o.id+'">'+o.name+'</option>'}).join("")+'</select></label><p class="note">Demo password: admin</p>',function(){if($("pw").value==="admin"){authO=$("ow").value;render()}else $("pe").textContent="Wrong password."});return}
+ var mine=cars.filter(function(c){return c.owner===authO}),ids=mine.map(function(c){return c.id});
+ var mb=bookings.filter(function(b){return ids.indexOf(b.car)>=0}),gross=mb.reduce(function(s,b){return s+b.total},0),net=Math.round(gross*(1-COMM)),t=tab.owner;
+ var h='<div class="shell">'+side(oname(authO),"Owner portal",[["cars","My cars"],["earn","Earnings"],["add","Add a vehicle"]],"owner")+'<div>';
+ h+=statBox([[mine.length,"Vehicles listed"],[mine.filter(function(c){return openB(c.id)}).length,"Currently rented"],[fmt(net),"Your earnings (after "+COMM*100+"% fee)"]]);
+ if(t==="cars"){
+  h+='<div class="panel"><h3>My cars</h3><div class="scroll"><table><tr><th>Car</th><th>Daily rate</th><th>Status</th><th>Rented to</th></tr>'+mine.map(function(c){var b=openB(c.id);
+   return '<tr><td><b>'+c.name+'</b><br><span class="note">'+c.plate+'</span></td><td>'+fmt(c.price)+'</td><td><span class="tag'+(c.status==="pending"||b?' w':'')+'">'+(c.status==="pending"?'Awaiting approval':b?'Rented':'Available')+'</span></td><td>'+(b?b.name+'<br><span class="note">returns '+b.to+'</span>':'-')+'</td></tr>'}).join("")+'</table></div></div>';
+ }else if(t==="earn"){
+  h+='<div class="panel"><h3>Earnings by booking</h3><div class="scroll"><table><tr><th>Ref</th><th>Car</th><th>Dates</th><th>Booking</th><th>Your share</th></tr>'+(mb.map(function(b){return '<tr><td>'+b.ref+'</td><td>'+car(b.car).name+'</td><td>'+b.from+' to '+b.to+'</td><td>'+fmt(b.total)+'</td><td>'+fmt(Math.round(b.total*(1-COMM)))+'</td></tr>'}).join("")||'<tr><td colspan="5" class="note">No bookings yet.</td></tr>')+'</table></div><p class="note">Payouts are sent after each trip ends.</p></div>';
+ }else{
+  h+='<div class="panel" style="max-width:480px"><h3>Add a vehicle</h3><label>Make and model<input id="an"></label><label>Number plate<input id="ap"></label><div class="row"><label>Type<select id="at"><option>Economy</option><option>Sedan</option><option>SUV</option><option>4x4 SUV</option><option>Van</option></select></label><label>Seats<input id="as" type="number" value="5" min="2" max="14"></label></div><label>Daily rate (KES)<input id="ar" type="number" min="1000" step="500"></label><div class="err" id="ae"></div><button class="btn pri" id="ab">Submit for approval</button><p class="note">Our team inspects the car before it goes live.</p></div>';
+ }
+ $("app").innerHTML=h+'</div></div>';
+ wire("owner",function(){authO=null;render()});
+ if(t==="add")$("ab").onclick=function(){
+  var n=$("an").value.trim(),pl=$("ap").value.trim().toUpperCase(),pr=+$("ar").value;
+  if(!n||!pl||!pr){$("ae").textContent="Fill in the model, number plate and daily rate.";return}
+  var id=cars.reduce(function(m,c){return Math.max(m,c.id)},0)+1;
+  cars.push({id:id,name:n,type:$("at").value,seats:+$("as").value||5,price:pr,gps:"Not fitted",owner:authO,status:"pending",plate:pl});pos[id]=yardPos(id);save();tab.owner="cars";render();
+ };
+}
+render();
+</script></body></html>
